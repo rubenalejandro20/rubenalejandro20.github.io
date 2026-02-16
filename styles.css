@@ -167,6 +167,19 @@ footer{
   border-top:1px solid #111;
   margin-top:40px;
 }
+/* Smooth Section Transition */
+.section{
+  padding:60px 0;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.section.fade-out{
+  opacity: 0;
+  transform: translateY(10px);
+}
+
 .alert-banner{
   position:fixed;
   top:0;
@@ -186,6 +199,7 @@ footer{
   50%{opacity:.75;}
   100%{opacity:1;}
 }
+
 
 
 
