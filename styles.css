@@ -16,6 +16,8 @@ body{
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
+  padding-top: 35px;
+
 }
 .container{
   width:90%;
@@ -171,6 +173,7 @@ footer{
   50%{opacity:.75;}
   100%{opacity:1;}
 }
+
 
 
 
