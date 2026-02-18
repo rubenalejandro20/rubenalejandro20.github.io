@@ -233,18 +233,22 @@ footer{
 }
 
 .video-frame{
+  max-width: 700px;   /* controls how wide the video can get */
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid #131824;
   box-shadow: 0 20px 50px rgba(0,0,0,.45);
+  margin: 0 auto;     /* centers the video */
 }
 
 .video-frame iframe{
   width: 100%;
   height: 100%;
 }
+
+
 
 
 
