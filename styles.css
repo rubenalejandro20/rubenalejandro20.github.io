@@ -66,15 +66,16 @@ body{
 
 /* Alert */
 .alert-banner{
-  position:fixed;
-  top:0;
-  right:0;
-  background:var(--green);
+  position: fixed;
+  top: 88px;          /* <- BELOW the topbar */
+  right: 16px;
+  background: var(--green);
   color:#000;
   padding:10px 18px;
   font-weight:800;
-  z-index:2000;
-  border-bottom-left-radius:12px;
+  z-index: 2000;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.45);
 }
 
 /* Sections */
@@ -217,3 +218,4 @@ footer{
     font-size:42px;
   }
 }
+
