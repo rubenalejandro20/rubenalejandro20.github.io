@@ -14,7 +14,7 @@
 
 body{
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(180deg, #071e0d 0%, #0b2e16 100%);
+  background: linear-gradient(180deg, #0f3d1f 0%, #1f6f3b 100%);
   color: var(--text);
   padding-top: 100px;
   line-height: 1.6;
@@ -260,6 +260,7 @@ footer{
   text-align: center;
   margin: 0 0 10px 0; /* small space between title and video */
 }
+
 
 
 
