@@ -261,6 +261,24 @@ footer{
   margin: 0 0 10px 0; /* small space between title and video */
 }
 
+/* Force white readable text on green sections */
+
+body {
+  color: #ffffff;
+}
+
+p {
+  color: #ffffff;
+}
+
+li {
+  color: #ffffff;
+}
+
+h1, h2, h3, h4 {
+  color: #ffffff;
+}
+
 
 
 
