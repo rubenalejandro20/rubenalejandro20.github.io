@@ -294,7 +294,26 @@ p, li {
   background-color: #15803D;
 }
 
+/* Analytics page helpers */
+.section { padding: 64px 0; }
+.section--dark { background: rgba(0,0,0,0.35); }
 
+.grid-2 { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.feature, .step { background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); padding: 18px; border-radius: 14px; }
+.trust-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; color: rgba(255,255,255,0.85); font-size: 14px; }
+
+.list { margin: 12px 0 18px; padding-left: 18px; }
+.list li { margin: 6px 0; }
+
+.cta__inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+.cta__actions { display: flex; gap: 12px; }
+
+@media (max-width: 900px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .cta__inner { flex-direction: column; align-items: flex-start; }
+}
 
 
 
