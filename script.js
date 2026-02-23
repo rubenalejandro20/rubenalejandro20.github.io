@@ -24,3 +24,29 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     }, 120);
   });
 });
+
+// Page Fade-In
+window.addEventListener("load", function () {
+  document.body.classList.add("page-loaded");
+});
+
+// Fade-Out on Internal Navigation
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function (e) {
+    const href = this.getAttribute("href");
+
+    if (
+      href &&
+      !href.startsWith("#") &&
+      !this.hasAttribute("target") &&
+      !href.startsWith("http")
+    ) {
+      e.preventDefault();
+      document.body.classList.remove("page-loaded");
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 300);
+    }
+  });
+});
