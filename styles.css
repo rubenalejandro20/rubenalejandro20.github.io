@@ -281,6 +281,19 @@ h1, h2, h3, h4 {
 p, li {
   color: #ffffff !important;
 }
+.nav-cta {
+  background-color: #16A34A;
+  color: #ffffff !important;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-cta:hover {
+  background-color: #15803D;
+}
+
 
 
 
