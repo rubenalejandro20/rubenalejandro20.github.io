@@ -347,3 +347,14 @@ body.page-loaded {
   background: #111111 !important;
   border-color: #16A34A !important;
 }
+
+.analytics-page .btn{
+  background:#000 !important;
+  color:#fff !important;
+  border:1px solid #000 !important;
+}
+
+.analytics-page .btn:hover{
+  background:#111 !important;
+  border-color:#16A34A !important;
+}
