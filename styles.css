@@ -67,8 +67,8 @@ body{
 /* Alert */
 .alert-banner{
   position: fixed;
-  top: 88px;          /* <- BELOW the topbar */
-  right: 16px;
+  top: 120px;          /* <- BELOW the topbar */
+  right: 30px;
   background: var(--green);
   color:#000;
   padding:10px 18px;
@@ -977,4 +977,5 @@ body.menu-open .site-menu{
   align-items:center;
   gap:12px;
 }
+
 
