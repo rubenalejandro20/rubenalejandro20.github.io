@@ -972,3 +972,8 @@ body.menu-open .site-menu{
   background:#fff;
   border-radius:2px;
 }
+.topbar__actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
