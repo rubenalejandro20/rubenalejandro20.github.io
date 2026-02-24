@@ -17,34 +17,35 @@
 
   <!-- Top nav -->
   <header class="topbar">
-    <div class="container topbar__inner">
-      <a class="brand" href="#home">
-        <img class="brand__logo" src="assets/logo.png" alt="Matchday Live logo">
+  <div class="container topbar__inner">
+
+    <!-- Logo (LEFT) -->
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Matchday Live" class="brand__logo">
+    </a>
+
+    <!-- Right side -->
+    <div class="topbar__actions">
+      <a class="nav__cta" href="matchday-analytics.html">
+        MATCHDAY ANALYTICS
       </a>
 
-      <div class="topbar__actions">
-
-  <!-- Keep green button visible -->
-  <a class="nav__cta" href="matchday-analytics.html">MATCHDAY ANALYTICS</a>
-
-  <!-- Hamburger -->
-  <button class="nav-toggle"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-          aria-label="Open menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-</div>
+      <button class="nav-toggle" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
-    <nav id="mobile-menu" class="mobile-menu" aria-hidden="true">
-  <a href="#home">HOME</a>
-  <a href="#about">ABOUT</a>
-  <a href="#contact">CONTACT</a>
-</nav>
-  </header>
+
+  </div>
+
+  <!-- Dropdown Menu -->
+  <nav id="site-menu" class="site-menu" aria-hidden="true">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+</header>
 
   <!-- HOME -->
   <section id="home" class="hero section">
@@ -182,6 +183,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
