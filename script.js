@@ -50,3 +50,26 @@ document.querySelectorAll("a").forEach(link => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".nav-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  if (!btn || !menu) return;
+
+  btn.addEventListener("click", () => {
+    const isOpen = document.body.classList.toggle("menu-open");
+    btn.setAttribute("aria-expanded", String(isOpen));
+    menu.setAttribute("aria-hidden", String(!isOpen));
+  });
+
+  // Close menu after tapping a link
+  menu.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      document.body.classList.remove("menu-open");
+      btn.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-hidden", "true");
+    });
+  });
+});
+
