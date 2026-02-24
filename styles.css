@@ -978,4 +978,34 @@ body.menu-open .site-menu{
   gap:12px;
 }
 
+/* Lock header in place by moving page scrolling to an inner container */
+:root{
+  --header-h: 88px; /* adjust if needed */
+}
+
+/* Stop the body from bouncing */
+html, body{
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Header stays fixed (yours already is, keep it) */
+.topbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* The only thing that scrolls */
+.page-scroll{
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
