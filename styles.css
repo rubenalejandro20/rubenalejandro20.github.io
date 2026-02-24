@@ -786,7 +786,7 @@ body.page-loaded {
   .brand__logo{ height:32px; width:auto; object-fit:contain; }
 
   /* keep the green button visible but smaller */
-  .nav__cta, .nav-cta{
+  .nav-cta, .nav-cta{
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -798,3 +798,4 @@ body.page-loaded {
   /* open menu */
   body.menu-open .mobile-menu{ display:block; }
 }
+
