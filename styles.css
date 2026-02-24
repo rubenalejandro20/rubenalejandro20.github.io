@@ -627,10 +627,94 @@ body.page-loaded {
   }
 }
 
+/* ===== Mobile polish (header + hero buttons) ===== */
+@media (max-width: 600px){
 
+  /* --- Header layout --- */
+  .topbar{
+    height: 64px;
+    display: flex;
+    align-items: center;
+  }
 
+  .topbar__inner{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
 
+  /* Stop logo from pushing the menu off-screen */
+  .brand{
+    max-width: 52%;
+  }
+  .brand img,
+  .brand__logo{
+    max-width: 100%;
+    height: 32px;
+    object-fit: contain;
+  }
 
+  /* Keep menu tight + always on one line */
+  .nav{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+  .nav a{
+    margin-left: 0;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 8px 6px;
+  }
 
+  /* --- Move/resize the green banner so it doesn't mess with the header --- */
+  .alert-banner{
+    position: fixed;
+    top: 70px;            /* sits below header */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    max-width: calc(100% - 24px);
+    text-align: center;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
 
+  /* body top padding = header height + banner space */
+  body{
+    padding-top: 130px;
+  }
 
+  /* --- Hero buttons: stack nicely on mobile --- */
+  /* This targets common patterns: buttons inside hero/cta containers */
+  .hero .btn,
+  .hero .button,
+  .hero a.btn,
+  .hero a.button,
+  .hero .cta a,
+  .hero__actions a,
+  .hero__cta a{
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    text-align: center;
+    white-space: normal;      /* allow wrap */
+    line-height: 1.15;
+    padding: 16px 14px;
+  }
+
+  /* If your buttons sit in a row container, force stacking */
+  .hero__actions,
+  .hero__cta,
+  .cta-row,
+  .buttons,
+  .btn-row{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
