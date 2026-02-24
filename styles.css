@@ -837,3 +837,116 @@ body.page-loaded {
 .nav__cta:hover{
   background:#27ae60;
 }
+
+/* ===== CLEAN GLOBAL TOPBAR ===== */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  background:#000;
+  padding:14px 0;
+}
+
+.topbar__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+}
+
+.brand__logo{
+  height:36px;
+  width:auto;
+  object-fit:contain;
+}
+
+/* Right side */
+.topbar__actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+/* Support both class names so it never breaks */
+.nav__cta, .nav-cta{
+  background:#2ecc71;
+  color:#000 !important;
+  font-weight:800;
+  padding:10px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  white-space:nowrap;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  transition:.2s ease;
+}
+
+.nav__cta:hover, .nav-cta:hover{
+  background:#27ae60;
+}
+
+/* Hamburger */
+.nav-toggle{
+  width:44px;
+  height:44px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.nav-toggle span{
+  height:2px;
+  margin:5px 0;
+  background:#fff;
+  border-radius:2px;
+}
+
+/* Dropdown menu */
+.site-menu{
+  display:none;
+  position:absolute;
+  right:16px;
+  top:100%;
+  margin-top:12px;
+  background:rgba(0,0,0,0.95);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;
+  padding:12px;
+  min-width:220px;
+}
+
+.site-menu a{
+  display:block;
+  padding:12px;
+  border-radius:10px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+}
+
+.site-menu a:hover{
+  background:rgba(255,255,255,0.08);
+}
+
+body.menu-open .site-menu{
+  display:block;
+}
+
+/* Slight mobile refinement only for sizing */
+@media (max-width:768px){
+  .brand__logo{ height:30px; }
+  .nav__cta, .nav-cta{
+    font-size:12px;
+    padding:8px 10px;
+  }
+}
