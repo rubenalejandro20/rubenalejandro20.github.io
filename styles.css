@@ -799,3 +799,20 @@ body.page-loaded {
   body.menu-open .mobile-menu{ display:block; }
 }
 
+.nav-cta{
+  background:#2ecc71;
+  color:#000;
+  font-weight:700;
+  padding:10px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+  transition:.2s ease;
+}
+
+.nav-cta:hover{
+  background:#27ae60;
+}
