@@ -17,19 +17,30 @@
 
   <!-- Top nav -->
   <header class="topbar">
-    <div class="container topbar__inner">
-    <a class="brand" href="index.html#home">
-      <img class="brand__logo" src="assets/matchday-analytics-logo.png" alt="Matchday Analytics logo">
+  <div class="container topbar__inner">
+
+    <!-- Logo (keep this) -->
+    <a class="brand" href="index.html">
+      <img class="brand__logo" src="logo.png" alt="Matchday Live" />
     </a>
 
-      <nav class="nav">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#contact">Contact</a>
-        <a href="matchday-analytics.html" class="nav-cta">Matchday Analytics</a>
-      </nav>
+    <!-- Right side: green button stays + hamburger -->
+    <div class="topbar__actions">
+      <a class="nav__cta" href="analytics.html">MATCHDAY ANALYTICS</a>
+
+      <button class="nav-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </header>
+  </div>
+
+  <!-- Mobile menu drawer -->
+  <nav id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+</header>
 
   <!-- Main -->
   <main>
