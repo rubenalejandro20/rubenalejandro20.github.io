@@ -786,7 +786,7 @@ body.page-loaded {
   .brand__logo{ height:32px; width:auto; object-fit:contain; }
 
   /* keep the green button visible but smaller */
-  .nav-cta, .nav-cta{
+  .nav__cta, .nav-cta{
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -977,3 +977,4 @@ body.menu-open .site-menu{
   align-items:center;
   gap:12px;
 }
+
