@@ -575,6 +575,10 @@ body.page-loaded {
     height: auto;
   }
 }
+.analytics-page .brand__logo {
+  height: 70px;
+}
+
 
 
 
