@@ -579,6 +579,53 @@ body.page-loaded {
   height: 70px;
 }
 
+/* --- Mobile nav fix --- */
+.nav{
+  display:flex;
+  align-items:center;
+}
+
+.nav a{
+  white-space: nowrap; /* prevents breaking "ABOUT" etc */
+}
+
+@media (max-width: 600px){
+  .topbar{
+    padding:14px 0; /* smaller header */
+  }
+
+  .brand__logo{
+    height:32px; /* smaller logo */
+  }
+
+  .topbar__inner{
+    gap:12px;
+  }
+
+  .nav{
+    gap:14px;          /* spacing between links */
+    flex-wrap:nowrap;  /* keep on one line */
+    justify-content:flex-end;
+  }
+
+  .nav a{
+    margin-left:0;     /* remove the big desktop spacing */
+    font-size:12px;    /* smaller so it fits */
+    letter-spacing:.6px;
+  }
+
+  /* Optional: keep the green alert from taking too much space on mobile */
+  .alert-banner{
+    top:70px;
+    padding:8px 12px;
+    font-size:13px;
+  }
+
+  /* Optional: adjust body padding so content doesn't sit too low */
+  body{
+    padding-top:92px;
+  }
+}
 
 
 
