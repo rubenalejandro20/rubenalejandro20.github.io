@@ -816,3 +816,24 @@ body.page-loaded {
 .nav-cta:hover{
   background:#27ae60;
 }
+
+/* ===== Fix CTA class mismatch (supports both .nav-cta and .nav__cta) ===== */
+.nav-cta,
+.nav__cta{
+  background:#2ecc71;
+  color:#000 !important;
+  font-weight:800;
+  padding:10px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+  line-height:1;
+}
+
+.nav-cta:hover,
+.nav__cta:hover{
+  background:#27ae60;
+}
