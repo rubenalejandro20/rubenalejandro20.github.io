@@ -718,3 +718,83 @@ body.page-loaded {
     gap: 12px;
   }
 }
+
+/* ===== Mobile hamburger + keep green button visible ===== */
+
+.topbar__actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* Hamburger button */
+.nav-toggle{
+  width:44px;
+  height:44px;
+  border:none;
+  background:transparent;
+  display:none;              /* only show on mobile */
+  cursor:pointer;
+  padding:10px;
+}
+
+.nav-toggle span{
+  display:block;
+  height:2px;
+  margin:6px 0;
+  background:#cfd3da;
+  border-radius:2px;
+}
+
+/* Mobile menu drawer */
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:64px;
+  right:12px;
+  left:12px;
+  background:rgba(0,0,0,0.92);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  padding:14px;
+  z-index:9999;
+}
+
+.mobile-menu a{
+  display:block;
+  padding:14px 12px;
+  border-radius:10px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.mobile-menu a:hover{
+  background:rgba(255,255,255,0.06);
+}
+
+/* Mobile rules */
+@media (max-width: 768px){
+  .nav-toggle{ display:block; }     /* show hamburger on mobile */
+
+  /* hide old desktop nav if any page still has it */
+  .nav{ display:none !important; }
+
+  /* keep logo visible */
+  .brand{ display:flex; align-items:center; }
+  .brand__logo{ height:32px; width:auto; object-fit:contain; }
+
+  /* keep the green button visible but smaller */
+  .nav__cta, .nav-cta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 12px;
+    font-size:12px;
+    white-space:nowrap;
+  }
+
+  /* open menu */
+  body.menu-open .mobile-menu{ display:block; }
+}
