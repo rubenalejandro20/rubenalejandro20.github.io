@@ -581,5 +581,87 @@ body.page-loaded {
 
 /* --- Mobile nav fix --- */
 
+/* ===== Topbar buttons + Hamburger menu (FINAL) ===== */
+
+.topbar__actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+/* Make the green CTA always work (supports both class names) */
+.nav__cta, .nav-cta{
+  background: var(--green);
+  color:#000 !important;
+  text-decoration:none;
+  font-weight:800;
+  padding:10px 16px;
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+}
+
+.nav__cta:hover, .nav-cta:hover{
+  background: var(--green-dark);
+}
+
+/* Hamburger always visible */
+.nav-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  padding:10px;
+}
+
+.nav-toggle span{
+  display:block;
+  width:26px;
+  height:2px;
+  margin:5px 0;
+  background:#fff;
+  border-radius:2px;
+}
+
+/* Dropdown menu: hidden by default */
+.mobile-menu{
+  display:none;
+  position:absolute;
+  right:30px;
+  top:100%;
+  margin-top:12px;
+  background: rgba(0,0,0,0.95);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:14px;
+  padding:10px;
+  min-width:220px;
+  z-index:2000;
+}
+
+/* Show menu when hamburger toggles */
+body.menu-open .mobile-menu{
+  display:block;
+}
+
+.mobile-menu a{
+  display:block;
+  padding:12px 12px;
+  border-radius:10px;
+  color:#fff !important;
+  text-decoration:none !important;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.mobile-menu a:hover{
+  background: rgba(255,255,255,0.08);
+}
 
 
