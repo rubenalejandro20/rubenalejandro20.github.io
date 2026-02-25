@@ -763,4 +763,87 @@ body.menu-open .alert-banner{
   z-index: 2000; /* menu is 9999 so menu wins */
 }
 
+/* ===== Header right side layout ===== */
+.topbar__actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+/* Make the green button work even if class is nav__cta */
+.nav__cta, .nav-cta{
+  background: var(--green);
+  color:#000 !important;
+  text-decoration:none !important;
+  font-weight:800;
+  padding:10px 16px;
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+}
+
+/* ===== Hamburger (fix tiny/ugly lines) ===== */
+.nav-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  padding:10px;
+  border-radius:12px;
+}
+
+.nav-toggle span{
+  display:block;
+  width:26px;          /* IMPORTANT */
+  height:2px;
+  margin:5px 0;
+  background:#fff;     /* visible on black bar */
+  border-radius:2px;
+}
+
+/* ===== Dropdown menu ===== */
+.mobile-menu{
+  display:none;
+  position:absolute;
+  right:30px;
+  top:100%;
+  margin-top:12px;
+  background: rgba(0,0,0,0.95);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:14px;
+  padding:10px;
+  min-width:220px;
+  z-index:9999; /* above alert */
+}
+
+body.menu-open .mobile-menu{
+  display:block;
+}
+
+.mobile-menu a{
+  display:block;
+  padding:12px 12px;
+  border-radius:10px;
+  color:#fff !important;
+  text-decoration:none !important;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.mobile-menu a:hover{
+  background: rgba(255,255,255,0.08);
+}
+
+/* ===== Alert shouldn't block the dropdown ===== */
+body.menu-open .alert-banner{
+  opacity:0;
+  pointer-events:none;
+}
 
