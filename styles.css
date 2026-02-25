@@ -711,5 +711,56 @@ body.menu-open .mobile-menu{
   background: rgba(255,255,255,0.08);
 }
 
+/* ===== Fix hamburger icon look ===== */
+.nav-toggle{
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  padding:10px;
+}
+
+.nav-toggle span{
+  display:block;
+  width:26px;          /* <- makes lines full length */
+  height:2px;
+  margin:5px 0;
+  background:#fff;
+  border-radius:2px;
+}
+
+/* Optional: give it a subtle box so it looks premium */
+.nav-toggle{
+  border-radius:12px;
+}
+.nav-toggle:hover{
+  background:rgba(255,255,255,0.06);
+}
+
+/* ===== Fix dropdown placement + keep it above everything ===== */
+.mobile-menu{
+  z-index: 9999;
+  position: absolute;
+  right: 24px;
+  top: 100%;
+  margin-top: 12px;
+}
+
+/* ===== Alert banner: don't fight the dropdown ===== */
+/* When menu is open, hide the alert so it doesn't cover the menu */
+body.menu-open .alert-banner{
+  opacity:0;
+  pointer-events:none;
+  transform: translateY(-8px);
+}
+
+/* Also make sure alert sits under the dropdown normally */
+.alert-banner{
+  z-index: 2000; /* menu is 9999 so menu wins */
+}
 
 
