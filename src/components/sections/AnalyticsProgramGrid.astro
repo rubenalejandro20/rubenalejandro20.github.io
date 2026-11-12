@@ -1,0 +1,44 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+import { analyticsComponents, analyticsDeliverables } from '../../content/analytics-program';
+---
+
+<section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <SectionHeading
+    tone="lime"
+    eyebrow="The monthly program"
+    heading="Four components, one clear picture"
+    lead="Designed for teams seeking improvement through structure, clarity, and consistent feedback loops."
+  />
+
+  <div class="mt-12 grid gap-6 sm:grid-cols-2">
+    {analyticsComponents.map((component) => (
+      <Card class="hover:border-lime/40">
+        <span class="text-3xl">{component.icon}</span>
+        <h3 class="mt-4 font-display text-xl font-bold uppercase tracking-wide text-ink">
+          {component.title}
+        </h3>
+        <p class="mt-2 text-sm text-muted">{component.description}</p>
+      </Card>
+    ))}
+  </div>
+
+  <div class="mt-14 rounded-2xl border border-lime/20 bg-night-alt p-8">
+    <h3 class="font-display text-xl font-bold uppercase tracking-wide text-lime">What you get every month</h3>
+    <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+      {analyticsDeliverables.map((item) => (
+        <li class="flex items-start gap-2 text-sm text-muted">
+          <span class="mt-0.5 text-lime">✔</span>
+          {item}
+        </li>
+      ))}
+    </ul>
+    <div class="mt-6">
+      <Button href="/contact?type=analytics" class="!bg-lime !text-night hover:!bg-lime/80">
+        Get Started
+      </Button>
+    </div>
+  </div>
+</section>

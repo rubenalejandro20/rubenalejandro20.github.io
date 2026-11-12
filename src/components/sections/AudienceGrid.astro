@@ -1,0 +1,32 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const audiences = [
+  { title: 'Youth Clubs', description: 'Multi-camera coverage for academy and club matchdays.', icon: '⚽' },
+  {
+    title: 'Leagues',
+    description: 'Consistent, repeatable production across a full season of fixtures.',
+    icon: '🏆',
+  },
+  {
+    title: 'Tournaments',
+    description: 'Full-day coverage across showcases and tournament weekends.',
+    icon: '📅',
+  },
+  { title: 'Schools', description: 'Broadcast-quality streams for school and college matches.', icon: '🏫' },
+];
+---
+
+<section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <SectionHeading align="center" eyebrow="Who it's for" heading="Built for every level of the game" />
+
+  <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {audiences.map((audience) => (
+      <div class="rounded-2xl border border-ink/10 bg-night-alt p-6 text-center">
+        <span class="text-3xl">{audience.icon}</span>
+        <h3 class="mt-3 font-display text-lg font-bold uppercase tracking-wide text-ink">{audience.title}</h3>
+        <p class="mt-2 text-sm text-muted">{audience.description}</p>
+      </div>
+    ))}
+  </div>
+</section>
