@@ -1,0 +1,61 @@
+---
+import LiteYouTube from '../video/LiteYouTube.tsx';
+import Button from '../ui/Button.astro';
+import { videos } from '../../content/videos';
+import { site } from '../../content/site';
+
+const filters: { value: string; label: string }[] = [
+  { value: 'all', label: 'All' },
+  { value: '11v11', label: '11v11' },
+  { value: 'indoor', label: 'Indoor' },
+  { value: 'highlights', label: 'Highlights' },
+];
+---
+
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+  <div id="highlights-filters" class="flex flex-wrap gap-2">
+    {filters.map((filter) => (
+      <button
+        type="button"
+        data-filter={filter.value}
+        aria-pressed={filter.value === 'all'}
+        class="rounded-full border border-ink/20 px-4 py-2 text-sm font-bold uppercase tracking-wide text-muted transition-colors aria-pressed:border-brand aria-pressed:bg-brand aria-pressed:text-night hover:border-brand hover:text-brand"
+      >
+        {filter.label}
+      </button>
+    ))}
+  </div>
+
+  <div id="highlights-grid" class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {videos.map((video) => (
+      <div data-category={video.category}>
+        <LiteYouTube client:visible videoId={video.id} title={video.title} />
+      </div>
+    ))}
+  </div>
+
+  <p class="mt-10 text-center">
+    <Button href={site.socials.youtube} external>
+      Subscribe on YouTube
+    </Button>
+  </p>
+</section>
+
+<script>
+  const container = document.getElementById('highlights-filters');
+  const grid = document.getElementById('highlights-grid');
+
+  container?.addEventListener('click', (e) => {
+    const button = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter]');
+    if (!button || !grid) return;
+
+    container.querySelectorAll('button[data-filter]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    button.setAttribute('aria-pressed', 'true');
+
+    const filter = button.dataset.filter;
+    grid.querySelectorAll<HTMLElement>('[data-category]').forEach((item) => {
+      const matches = filter === 'all' || item.dataset.category === filter;
+      item.style.display = matches ? '' : 'none';
+    });
+  });
+</script>

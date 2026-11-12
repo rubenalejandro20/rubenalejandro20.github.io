@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LocationContent from '../components/sections/LocationContent.astro';
+import CTABand from '../components/sections/CTABand.astro';
+import { locations } from '../content/locations';
+import { localBusinessJsonLd } from '../lib/seo';
+
+const location = locations.find((l) => l.slug === 'dallas-fort-worth')!;
+---
+
+<BaseLayout
+  title="Livestreaming in Dallas–Fort Worth"
+  description="Matchday Live covers youth clubs, leagues, tournaments, and schools across the Dallas–Fort Worth area with broadcast-grade livestream production."
+  path="/dallas-fort-worth"
+  jsonLd={localBusinessJsonLd()}
+>
+  <LocationContent location={location} />
+  <CTABand
+    heading="Ready to bring Matchday Live to your event?"
+    lead="Tell us about your DFW event and we'll put together a coverage plan."
+    primaryLabel="Request a Quote"
+    primaryHref="/contact"
+  />
+</BaseLayout>

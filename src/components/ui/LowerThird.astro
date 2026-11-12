@@ -1,0 +1,14 @@
+---
+// Broadcast-style "name plate" intro, used for Ruben Zurda's profile.
+interface Props {
+  name: string;
+  role: string;
+  class?: string;
+}
+const { name, role, class: className = '' } = Astro.props;
+---
+
+<div class={`inline-block border-l-4 border-lime bg-night-alt/90 px-5 py-3 ${className}`}>
+  <p class="font-display text-2xl font-bold uppercase tracking-wide text-ink">{name}</p>
+  <p class="text-sm font-semibold uppercase tracking-[0.15em] text-lime">{role}</p>
+</div>

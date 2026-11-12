@@ -1,0 +1,99 @@
+---
+import { site } from '../../content/site';
+
+const year = new Date().getFullYear();
+
+const nav = [
+  { href: '/livestreaming', label: 'Livestreaming' },
+  { href: '/analytics', label: 'Analytics' },
+  { href: '/highlights', label: 'Highlights' },
+  { href: '/about', label: 'About' },
+  { href: '/partners', label: 'Partners' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const serviceAreas = [
+  { href: '/dallas-fort-worth', label: 'Dallas–Fort Worth' },
+  { href: '/houston', label: 'Houston (coming soon)' },
+];
+---
+
+<footer class="border-t border-ink/10 bg-night-alt">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
+    <div class="lg:col-span-2">
+      <img
+        src="/brand/matchday-live-logo.png"
+        alt="Matchday Live"
+        class="h-10 w-auto"
+        width="160"
+        height="40"
+      />
+      <p class="mt-4 max-w-sm text-sm text-muted">{site.description}</p>
+      <div class="mt-5 flex gap-4">
+        <a
+          href={site.socials.youtube}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-display text-sm font-bold uppercase tracking-wide text-muted hover:text-brand"
+        >
+          YouTube
+        </a>
+        <a
+          href={site.socials.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-display text-sm font-bold uppercase tracking-wide text-muted hover:text-brand"
+        >
+          Instagram
+        </a>
+      </div>
+    </div>
+
+    <nav aria-label="Footer">
+      <p class="font-display text-sm font-bold uppercase tracking-wide text-ink">Site</p>
+      <ul class="mt-4 space-y-2">
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} class="text-sm text-muted hover:text-brand">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div>
+      <p class="font-display text-sm font-bold uppercase tracking-wide text-ink">Service areas</p>
+      <ul class="mt-4 space-y-2">
+        {serviceAreas.map((area) => (
+          <li>
+            <a href={area.href} class="text-sm text-muted hover:text-brand">
+              {area.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-6 font-display text-sm font-bold uppercase tracking-wide text-ink">Contact</p>
+      <ul class="mt-4 space-y-2 text-sm text-muted">
+        <li>
+          <a href={`mailto:${site.contact.email}`} class="hover:text-brand">
+            {site.contact.email}
+          </a>
+        </li>
+        {site.contact.phones.map((phone) => (
+          <li>
+            <span class="text-muted/70">{phone.label}:</span>{' '}
+            <a href={phone.href} class="hover:text-brand">
+              {phone.number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-ink/10 py-6 text-center text-xs text-muted/70">
+    © {year} {site.legalName}. All rights reserved.
+  </div>
+</footer>

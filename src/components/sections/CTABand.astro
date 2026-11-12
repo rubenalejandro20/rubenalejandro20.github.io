@@ -1,0 +1,40 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  heading: string;
+  lead?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  heading,
+  lead,
+  primaryLabel = 'Request a Quote',
+  primaryHref = '/contact',
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props;
+---
+
+<section class="border-t border-ink/10 bg-night-alt">
+  <div class="mx-auto flex max-w-7xl flex-col items-start gap-8 px-4 py-20 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+    <div>
+      <h2 class="font-display text-3xl font-extrabold uppercase tracking-tight text-ink sm:text-4xl">
+        {heading}
+      </h2>
+      {lead && <p class="mt-3 max-w-xl text-muted">{lead}</p>}
+    </div>
+    <div class="flex flex-shrink-0 flex-wrap gap-4">
+      <Button href={primaryHref}>{primaryLabel}</Button>
+      {secondaryLabel && secondaryHref && (
+        <Button href={secondaryHref} variant="ghost">
+          {secondaryLabel}
+        </Button>
+      )}
+    </div>
+  </div>
+</section>

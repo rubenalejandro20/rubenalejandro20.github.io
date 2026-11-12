@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import HighlightsGrid from '../components/sections/HighlightsGrid.astro';
+import { videos } from '../content/videos';
+import { videoObjectJsonLd } from '../lib/seo';
+---
+
+<BaseLayout
+  title="Highlights & Replays"
+  description="Watch Matchday Live's broadcasts — 11v11, indoor, and hype footage from recent matchdays across Dallas–Fort Worth."
+  path="/highlights"
+  jsonLd={videos.map((v) => videoObjectJsonLd(v))}
+>
+  <section class="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
+    <SectionHeading
+      level="h1"
+      eyebrow="On the record"
+      heading="Highlights & Replays"
+      lead="A look at the broadcasts Matchday Live has put on air — filter by match type below."
+    />
+  </section>
+  <HighlightsGrid />
+</BaseLayout>

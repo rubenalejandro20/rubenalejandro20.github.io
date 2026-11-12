@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnalyticsHero from '../components/sections/AnalyticsHero.astro';
+import AnalyticsProgramGrid from '../components/sections/AnalyticsProgramGrid.astro';
+import ProcessSteps from '../components/sections/ProcessSteps.astro';
+import TeamProfile from '../components/sections/TeamProfile.astro';
+import FAQAccordion from '../components/sections/FAQAccordion.astro';
+import CTABand from '../components/sections/CTABand.astro';
+import { analyticsProcess } from '../content/analytics-program';
+import { analyticsFaqs } from '../content/faqs';
+import { serviceJsonLd, faqJsonLd, personJsonLd } from '../lib/seo';
+import { team } from '../content/team';
+
+const ruben = team[0];
+---
+
+<BaseLayout
+  title="Matchday Analytics"
+  description="Matchday Analytics is a monthly performance-analysis program for competitive soccer clubs — tactical analysis, team stats, evolution reports, and strategic syncs led by UEFA PRO coach Ruben Zurda."
+  path="/analytics"
+  headerVariant="analytics"
+  jsonLd={[
+    serviceJsonLd({
+      name: 'Matchday Analytics',
+      description:
+        'Monthly tactical analysis, team stats, evolution reporting, and strategic syncs for competitive soccer clubs.',
+    }),
+    faqJsonLd(analyticsFaqs),
+    ...(ruben ? [personJsonLd({ name: ruben.name, jobTitle: ruben.role, description: ruben.bio })] : []),
+  ]}
+>
+  <AnalyticsHero />
+  <AnalyticsProgramGrid />
+  <ProcessSteps
+    tone="lime"
+    dark
+    eyebrow="How it works"
+    heading="A structured monthly cycle"
+    steps={analyticsProcess}
+  />
+  <TeamProfile />
+  <FAQAccordion faqs={analyticsFaqs} heading="Matchday Analytics FAQ" />
+  <CTABand
+    heading="Ready to elevate your performance structure?"
+    lead="Pricing is shared after initial contact, tailored to your competitive level and match schedule."
+    primaryLabel="Book a Discovery Call"
+    primaryHref="/contact?type=analytics"
+    secondaryLabel="Request Proposal"
+    secondaryHref="/contact?type=analytics"
+  />
+</BaseLayout>

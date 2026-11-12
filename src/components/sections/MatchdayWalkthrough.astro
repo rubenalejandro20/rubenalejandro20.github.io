@@ -1,0 +1,40 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const stages = [
+  {
+    title: 'Arrival',
+    description: 'The crew arrives ahead of kickoff to scout camera positions and run cable.',
+  },
+  {
+    title: 'Setup',
+    description: 'Cameras, audio, and the scorebug graphics go live for a full production check.',
+  },
+  {
+    title: 'Broadcast',
+    description: 'The match streams live on YouTube with real-time graphics and multi-camera coverage.',
+  },
+  {
+    title: 'Highlights Delivered',
+    description: 'Key moments are cut into shareable clips and handed off after the final whistle.',
+  },
+];
+---
+
+<section class="bg-night-alt">
+  <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading align="center" eyebrow="Matchday, step by step" heading="What a matchday looks like" />
+
+    <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {stages.map((stage, index) => (
+        <li class="rounded-2xl border border-brand/30 bg-night p-6">
+          <span class="font-display text-4xl font-extrabold text-brand">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <h3 class="mt-3 font-display text-lg font-bold uppercase tracking-wide text-ink">{stage.title}</h3>
+          <p class="mt-2 text-sm text-muted">{stage.description}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

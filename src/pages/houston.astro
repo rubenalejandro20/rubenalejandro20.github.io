@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LocationContent from '../components/sections/LocationContent.astro';
+import CTABand from '../components/sections/CTABand.astro';
+import { locations } from '../content/locations';
+import { localBusinessJsonLd } from '../lib/seo';
+
+const location = locations.find((l) => l.slug === 'houston')!;
+---
+
+<BaseLayout
+  title="Coming Soon to Houston, TX"
+  description="Matchday Live is bringing broadcast-grade sports livestream production to Houston, TX. Request a quote to be among the first Houston events covered."
+  path="/houston"
+  jsonLd={localBusinessJsonLd()}
+>
+  <LocationContent location={location} />
+  <CTABand
+    heading="Want Matchday Live at your Houston event?"
+    lead="Reach out now and we'll follow up as coverage opens up in Houston."
+    primaryLabel="Request a Quote"
+    primaryHref="/contact"
+  />
+</BaseLayout>

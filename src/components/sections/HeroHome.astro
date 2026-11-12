@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import Button from '../ui/Button.astro';
+import LiveBadge from '../ui/LiveBadge.astro';
+import { site } from '../../content/site';
+import heroPoster from '../../assets/hero-poster.jpg';
+
+// Still frame from Matchday Live's own "Professional Hype Video", pulled once
+// from YouTube's public thumbnail CDN into src/assets so Astro can compress
+// and serve it as AVIF/WebP instead of the original 150KB JPEG on every load.
+---
+
+<section class="relative isolate overflow-hidden">
+  <Image
+    src={heroPoster}
+    alt=""
+    fetchpriority="high"
+    loading="eager"
+    widths={[640, 1024, 1280]}
+    sizes="100vw"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-night via-night/85 to-night/40"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-night via-night/30 to-transparent"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-40">
+    <LiveBadge class="mb-6" />
+    <h1 class="max-w-3xl font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-tight text-ink sm:text-7xl">
+      {site.tagline}
+    </h1>
+    <p class="mt-6 max-w-xl text-lg text-muted">
+      Broadcast-grade livestream production for clubs, leagues, tournaments, and schools across Dallas–Fort
+      Worth.
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <Button href="/contact">Request a Quote</Button>
+      <Button href={site.socials.youtube} variant="ghost" external>
+        Watch on YouTube
+      </Button>
+    </div>
+
+    <p class="mt-10 font-display text-sm font-bold uppercase tracking-[0.2em] text-muted">
+      Serving Dallas–Fort Worth ·{' '}
+      <a href="/houston" class="text-brand hover:underline">
+        Coming to Houston, TX
+      </a>
+    </p>
+  </div>
+</section>
