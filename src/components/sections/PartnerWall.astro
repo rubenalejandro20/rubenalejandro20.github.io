@@ -14,13 +14,7 @@ const { showHeading = true } = Astro.props;
       {showHeading && <SectionHeading align="center" eyebrow="Trusted by" heading="Our partners" />}
       <div class="mt-10 flex flex-wrap items-center justify-center gap-10">
         {partners.map((partner) => (
-          <img
-            src={partner.logo}
-            alt={partner.name}
-            loading="lazy"
-            class="h-20 w-auto opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 focus-visible:opacity-100 focus-visible:grayscale-0"
-            tabindex="0"
-          />
+          <img src={partner.logo} alt={partner.name} loading="lazy" class="h-20 w-auto" />
         ))}
       </div>
     </div>
