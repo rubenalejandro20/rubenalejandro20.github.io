@@ -1,20 +1,23 @@
 ---
+import { Image } from 'astro:assets';
 import Button from '../ui/Button.astro';
 import LiveBadge from '../ui/LiveBadge.astro';
 import { site } from '../../content/site';
+import heroPoster from '../../assets/hero-poster.jpg';
 
-// Still frame from Matchday Live's own "Professional Hype Video" — real
-// footage via YouTube's public thumbnail CDN, no video download tooling needed.
-const posterUrl = 'https://img.youtube.com/vi/eQ4apRTIdNE/maxresdefault.jpg';
+// Still frame from Matchday Live's own "Professional Hype Video", pulled once
+// from YouTube's public thumbnail CDN into src/assets so Astro can compress
+// and serve it as AVIF/WebP instead of the original 150KB JPEG on every load.
 ---
 
 <section class="relative isolate overflow-hidden">
-  <img
-    src={posterUrl}
+  <Image
+    src={heroPoster}
     alt=""
     fetchpriority="high"
-    width="1280"
-    height="720"
+    loading="eager"
+    widths={[640, 1024, 1280]}
+    sizes="100vw"
     class="absolute inset-0 h-full w-full object-cover"
   />
   <div class="absolute inset-0 bg-gradient-to-t from-night via-night/85 to-night/40"></div>

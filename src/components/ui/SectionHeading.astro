@@ -5,19 +5,22 @@ interface Props {
   lead?: string;
   align?: 'left' | 'center';
   tone?: 'brand' | 'lime';
+  /** Use "h1" once per page for the primary heading; defaults to "h2" for section headings. */
+  level?: 'h1' | 'h2';
 }
 
-const { eyebrow, heading, lead, align = 'left', tone = 'brand' } = Astro.props;
+const { eyebrow, heading, lead, align = 'left', tone = 'brand', level = 'h2' } = Astro.props;
 const alignClass = align === 'center' ? 'text-center mx-auto' : '';
 const eyebrowTone = tone === 'lime' ? 'text-lime' : 'text-brand';
+const Heading = level;
 ---
 
 <div class={`max-w-2xl ${alignClass}`}>
   {eyebrow && (
     <p class={`mb-3 font-display text-sm font-bold uppercase tracking-[0.2em] ${eyebrowTone}`}>{eyebrow}</p>
   )}
-  <h2 class="font-display text-4xl font-extrabold uppercase tracking-tight text-ink sm:text-5xl">
+  <Heading class="font-display text-4xl font-extrabold uppercase tracking-tight text-ink sm:text-5xl">
     {heading}
-  </h2>
+  </Heading>
   {lead && <p class="mt-4 text-lg text-muted">{lead}</p>}
 </div>

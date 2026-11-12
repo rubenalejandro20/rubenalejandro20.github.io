@@ -4,40 +4,73 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Matchday Live's marketing website (matchdayliveofficial.com, per `CNAME`) — a plain static site with no build step, no package manager, and no test suite. There is currently no `.git` directory in this working copy even though the repo name implies GitHub Pages hosting; it is deployed by pushing these files as-is (likely to a `rubenalejandro20.github.io` repo, served via the custom domain in `CNAME`).
+Matchday Live's marketing site (matchdayliveofficial.com) — an Astro + TypeScript + Tailwind CSS v4
+site with React islands for the interactive pieces (mobile nav, the contact form, the lite-YouTube
+video facade, the highlights filter). Static output, deployed to GitHub Pages via `public/CNAME`.
 
-## Running it locally
+This replaced a 2-page static HTML/CSS/JS site in a from-scratch rebuild (see git history: `main`
+holds the legacy site as a baseline commit; `redesign/v2` has the full rewrite). There is no remote
+configured yet — `git init` happened locally as part of that rebuild.
 
-There is no dev server or build command. Open `index.html` directly in a browser, or serve the folder with any static file server, e.g.:
+## Commands
 
+```bash
+npm run dev            # dev server, http://localhost:4321
+npm run build           # production build to dist/
+npm run preview         # serve the production build
+npm run check            # astro check (TS/Astro diagnostics) — run before considering work done
+npm run lint             # eslint .
+npm run format           # prettier --write . (sorts Tailwind classes too)
+npm run format:check     # prettier --check . (CI-safe)
+npm run clean-logos      # re-runs scripts/clean-logos.mjs (see Brand assets below)
 ```
-python -m http.server 8000
-```
 
-Then visit `http://localhost:8000/`.
+No test suite exists. `npm run check` + `npm run lint` + `npm run build` are the correctness gates.
 
-## Structure
+## Architecture
 
-- `index.html` — home page (hero, about/services, video embeds, contact section).
-- `matchday-analytics.html` — separate landing page for the "Matchday Analytics" coaching/analytics offering, including a coach profile section.
-- `styles.css` — single stylesheet shared by both pages.
-- `script.js` — single script shared by both pages.
-- `assets/` — logos and images referenced by both pages.
-- `favicon.ico`, `CNAME` — site-level config for GitHub Pages + custom domain.
+**Content lives in `src/content/*.ts`, not in components.** Each file exports a plain object/array
+validated with Zod via `.parse()` at module load — a bad edit fails the build immediately instead of
+shipping broken data. Pages and section components import from here rather than hardcoding copy, so
+`site.ts`, `services.ts`, `analytics-program.ts`, `team.ts`, `partners.ts`, `videos.ts`,
+`locations.ts`, and `faqs.ts` are the first place to look for "where does this text/data come from."
+Components that render a content array (`TeamGrid`, `PartnerWall`, etc.) null-guard on `.length === 0`
+and render nothing — there are no fabricated placeholder entries anywhere in the content.
 
-Both HTML files are independent, self-contained pages (not generated from a template/framework) that both load `styles.css` and `script.js`. When changing shared visual or behavioral elements (header/nav, buttons, footer), **edit both HTML files** to keep them in sync — there is no shared partial/include mechanism.
+**Two brand identities share one codebase.** Matchday Live (green, `--color-brand`) is the default;
+Matchday Analytics (lime, `--color-lime`) is a sub-brand used only on `/analytics`-related surfaces —
+`<Header variant="analytics">` swaps the logo/link, and section components take a `tone="lime"` prop
+where they need the accent. Don't let lime bleed into non-Analytics pages or vice versa.
 
-## `styles.css` notes
+**Design tokens are Tailwind v4 `@theme` vars in `src/styles/global.css`**, not a `tailwind.config.*`
+file (v4 is CSS-first — there is no Tailwind config file in this repo, and that's correct, not an
+oversight). Colors (`--color-brand`, `--color-lime`, `--color-live`, `--color-night`, etc.) and fonts
+(`--font-display` = Barlow Condensed, `--font-body` = Inter) are declared there and become Tailwind
+utilities automatically (`bg-brand`, `font-display`, …). The broadcast-red `--color-live` is reserved
+for the LIVE badge/indicator only — never for general-purpose content.
 
-This file has grown by appending override blocks (several sections are literally labeled `/* FINAL */` or similar) rather than editing earlier rules in place, so the same selector (e.g. `.btn`, `.profile-block`, `.mobile-menu`, `.nav-toggle`) is often redefined multiple times later in the file with `!important`. When changing styling for an existing component, search for **all** occurrences of its selector/class in the file and check which block actually wins (later rules / `!important` win) rather than editing only the first occurrence.
+**Fonts and brand logos are self-hosted**, not loaded from Google Fonts/CDN at runtime — woff2 files
+in `public/fonts/`, logo/favicon/OG-image PNGs in `public/brand/`. `scripts/clean-logos.mjs` is the
+(re-runnable) pipeline that turned the raw opaque logo drops into those transparent, cropped assets;
+re-run it with `npm run clean-logos` if a raw source file in `public/brand-source/` is replaced.
 
-## `script.js` behavior
+**Legacy URL compatibility**: `/matchday-analytics.html` redirects to `/analytics` via the
+`redirects` key in `astro.config.mjs`. Do **not** add a `/index.html` redirect entry there — the
+homepage's own build output already is `dist/index.html`, and Astro's redirect-page generator
+collides with that exact path (`EISDIR` at build time) if you try.
 
-Three independent, self-invoking behaviors, all relying on plain DOM APIs (no framework, no modules/bundler):
+**Islands are deliberately minimal**: `MobileNav.tsx` (in the global `Header`, so it ships on every
+page), `InquiryForm.tsx` (Contact page), `LiteYouTube.tsx` (click-to-load YouTube facade, used on
+Home/Highlights), and the Highlights category filter (plain vanilla JS, not a React island — see
+`HighlightsGrid.astro`). Everything else is server-rendered Astro with zero client JS. Keep new
+interactive pieces this scoped rather than reaching for React by default.
 
-1. Sets the footer `#year` text to the current year.
-2. Intercepts same-page `#anchor` link clicks to add a fade-out/scroll/fade-in effect.
-3. Intercepts clicks on internal links (not `#...`, not `target`-having, not `http...`) to fade the page out before navigating, and toggles `.page-loaded` on `<body>` for the page's own fade-in on load.
-4. Wires up `.nav-toggle` to open/close the `#mobile-menu` drawer by toggling `body.menu-open`.
+**No pricing appears anywhere on the site** — every commercial CTA routes to `/contact` (optionally
+with `?type=livestream|analytics|partnership|other` to pre-select the inquiry type, read client-side
+from `window.location.search` inside `InquiryForm.tsx` since this is a fully static build with no
+per-request server to parse query params at render time).
 
-Note: `index.html`'s header markup does not currently include a `.nav-toggle` button or `#mobile-menu` element (unlike `matchday-analytics.html`, which has both) — the mobile-menu JS silently no-ops there since it guards on the elements existing.
+**One `<h1>` per page**: `SectionHeading.astro` defaults to rendering an `<h2>` and takes a
+`level="h1"` prop for the single page heading — when adding a new page, make sure exactly one heading
+on it passes `level="h1"` (or is a raw `<h1>`, as `HeroHome.astro`/`AnalyticsHero.astro`/`404.astro`
+do).
