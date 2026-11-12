@@ -78,7 +78,7 @@ export default function InquiryForm({ accessKey, defaultType = 'livestream' }: P
     return Object.keys(next).length === 0;
   }
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!validate()) return;
 

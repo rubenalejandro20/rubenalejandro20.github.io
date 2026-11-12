@@ -1,0 +1,42 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Button from '../ui/Button.astro';
+import type { Location } from '../../content/schema';
+
+interface Props {
+  location: Location;
+}
+const { location } = Astro.props;
+const isComingSoon = location.status === 'coming-soon';
+---
+
+<section class="border-b border-ink/10 bg-night-alt">
+  <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    {isComingSoon && (
+      <span class="mb-6 inline-flex rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-xs font-extrabold tracking-widest text-brand">
+        COMING SOON
+      </span>
+    )}
+    <SectionHeading eyebrow={location.city} heading={location.heading} lead={location.summary} />
+    <div class="mt-8">
+      <Button href="/contact">
+        {isComingSoon ? 'Request a Quote for an Upcoming Event' : 'Request a Quote'}
+      </Button>
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <SectionHeading
+    eyebrow={isComingSoon ? 'Planned services' : 'What we cover'}
+    heading={isComingSoon ? 'What to expect in Houston' : `Serving ${location.city}`}
+  />
+  <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+    {location.bullets.map((bullet) => (
+      <li class="flex items-start gap-3 rounded-xl border border-ink/10 bg-night-alt p-5 text-ink">
+        <span class="text-brand">✔</span>
+        {bullet}
+      </li>
+    ))}
+  </ul>
+</section>

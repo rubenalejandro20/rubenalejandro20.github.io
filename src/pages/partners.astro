@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import PartnerWall from '../components/sections/PartnerWall.astro';
+import CTABand from '../components/sections/CTABand.astro';
+---
+
+<BaseLayout
+  title="Partners"
+  description="Matchday Live partners with leagues and organizations across Dallas–Fort Worth to bring broadcast-grade coverage to their matches."
+  path="/partners"
+>
+  <section class="border-b border-ink/10 bg-night-alt">
+    <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Partnerships"
+        heading="Who we work with"
+        lead="Matchday Live partners with leagues and organizations to bring consistent, broadcast-grade coverage to their matches and tournaments."
+      />
+    </div>
+  </section>
+
+  <PartnerWall showHeading={false} />
+
+  <CTABand
+    heading="Interested in becoming a partner?"
+    lead="Tell us about your league, tournament, or organization and we'll follow up to talk through what a partnership could look like."
+    primaryLabel="Get in Touch"
+    primaryHref="/contact?type=partnership"
+  />
+</BaseLayout>

@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import TeamGrid from '../components/sections/TeamGrid.astro';
+import PartnerWall from '../components/sections/PartnerWall.astro';
+import CTABand from '../components/sections/CTABand.astro';
+import { organizationJsonLd } from '../lib/seo';
+
+const differentiators = [
+  {
+    title: 'Broadcast-grade, not bystander',
+    description:
+      'Multi-camera coverage and real-time graphics — the same production standard as a professional broadcast, built for grassroots and competitive matchdays.',
+  },
+  {
+    title: 'Live, not just recorded',
+    description:
+      'Matches stream in real time on YouTube, so parents, scouts, and fans don’t have to wait to watch.',
+  },
+  {
+    title: 'Production and performance, in one place',
+    description:
+      'Livestream production and Matchday Analytics sit under one roof, so clubs can get both the broadcast and the breakdown from a single partner.',
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Matchday Live is a sports livestreaming company bringing broadcast-grade video coverage to Dallas–Fort Worth, with Matchday Analytics led by Ruben Zurda."
+  path="/about"
+  jsonLd={organizationJsonLd()}
+>
+  <section class="border-b border-ink/10 bg-night-alt">
+    <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="About Matchday Live"
+        heading="We don't just stream games. We broadcast moments."
+        lead="Matchday Live is a high-energy sports livestreaming company built to deliver elite-level video coverage across Dallas–Fort Worth. From youth tournaments to competitive leagues, we turn every match into a professional broadcast experience."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <SectionHeading eyebrow="What sets us apart" heading="Why clubs bring us in" />
+    <div class="mt-12 grid gap-6 sm:grid-cols-3">
+      {differentiators.map((item) => (
+        <Card>
+          <h3 class="font-display text-lg font-bold uppercase tracking-wide text-ink">{item.title}</h3>
+          <p class="mt-2 text-sm text-muted">{item.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+
+  <TeamGrid />
+  <PartnerWall />
+
+  <CTABand
+    heading="Let's talk about your matchday."
+    lead="Tell us what you're planning and we'll put together a coverage plan."
+    primaryLabel="Request a Quote"
+    primaryHref="/contact"
+  />
+</BaseLayout>
