@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import Button from '../ui/Button.astro';
+import LowerThird from '../ui/LowerThird.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { team } from '../../content/team';
+
+const ruben = team[0];
+---
+
+<section class="border-y border-ink/10 bg-night-alt">
+  <div class="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
+    <div>
+      <SectionHeading
+        tone="lime"
+        eyebrow="Matchday Analytics"
+        heading="Tactical clarity. Measurable evolution."
+        lead="A monthly performance-analysis program for competitive clubs — built and led by a UEFA PRO licensed coach."
+      />
+      <div class="mt-8">
+        <Button href="/analytics" class="!bg-lime !text-night hover:!bg-lime/80">
+          Explore Matchday Analytics
+        </Button>
+      </div>
+    </div>
+
+    {ruben && (
+      <div class="relative">
+        <Image
+          src={ruben.photo}
+          alt={`${ruben.name}, ${ruben.role}`}
+          width={480}
+          height={560}
+          class="aspect-[4/5] w-full rounded-2xl object-cover"
+        />
+        <LowerThird name={ruben.name} role={ruben.role} class="absolute bottom-4 left-4 right-4" />
+      </div>
+    )}
+  </div>
+</section>

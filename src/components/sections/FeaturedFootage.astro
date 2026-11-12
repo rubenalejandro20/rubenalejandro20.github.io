@@ -1,0 +1,36 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Button from '../ui/Button.astro';
+import LiteYouTube from '../video/LiteYouTube.tsx';
+import { videos } from '../../content/videos';
+import { site } from '../../content/site';
+
+interface Props {
+  limit?: number;
+}
+const { limit = 3 } = Astro.props;
+const items = videos.slice(0, limit);
+---
+
+<section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <SectionHeading
+    eyebrow="On the record"
+    heading="Featured footage"
+    lead="A look at the broadcasts Matchday Live has already put on air."
+  />
+
+  <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {items.map((video) => (
+      <LiteYouTube client:visible videoId={video.id} title={video.title} />
+    ))}
+  </div>
+
+  <div class="mt-10">
+    <Button href="/highlights" variant="ghost">
+      See all highlights
+    </Button>
+    <Button href={site.socials.youtube} external class="ml-4">
+      Subscribe on YouTube
+    </Button>
+  </div>
+</section>

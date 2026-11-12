@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroHome from '../components/sections/HeroHome.astro';
+import ServiceGrid from '../components/sections/ServiceGrid.astro';
+import FeaturedFootage from '../components/sections/FeaturedFootage.astro';
+import AnalyticsTeaser from '../components/sections/AnalyticsTeaser.astro';
+import PartnerWall from '../components/sections/PartnerWall.astro';
+import CTABand from '../components/sections/CTABand.astro';
+import { organizationJsonLd, localBusinessJsonLd } from '../lib/seo';
+---
+
+<BaseLayout
+  title="Matchday Live"
+  description="Broadcast-grade sports livestream production for clubs, leagues, tournaments, and schools across Dallas–Fort Worth — coming soon to Houston, TX."
+  path="/"
+  jsonLd={[organizationJsonLd(), localBusinessJsonLd()]}
+>
+  <HeroHome />
+  <ServiceGrid limit={6} />
+  <FeaturedFootage limit={3} />
+  <AnalyticsTeaser />
+  <PartnerWall />
+  <CTABand
+    heading="Ready for broadcast-quality coverage?"
+    lead="Tell us about your event and we'll put together a production plan."
+    primaryLabel="Request a Quote"
+    primaryHref="/contact"
+    secondaryLabel="Watch on YouTube"
+    secondaryHref="https://www.youtube.com/@MATCHDAYLIVE-m3f"
+  />
+</BaseLayout>
